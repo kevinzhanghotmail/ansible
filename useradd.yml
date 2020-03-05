@@ -1,0 +1,14 @@
+---
+  - name: create new users
+    hosts: all
+    become: yes
+    tasks:
+    - name: Add user 'kumud'
+      user:
+        name: kumud
+        groups: google-sudoers
+    - name: set authrized key
+      authorized_key:
+        user: kumud
+        state: present
+        key: "{{ lookup('file', '/home/mk/kumud.pub-key') }}"
