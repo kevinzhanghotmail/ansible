@@ -1,0 +1,13 @@
+---
+- name: copy startup scripts and configure auto start
+  hosts: all
+  become: yes
+  tasks:
+  - name: copy file
+    copy:
+      src: /etc/init.d/cloud-sql-proxy
+      dest: /etc/init.d/cloud-sql-proxy
+      owner: root
+      group: root
+      mode: '0755'
+  - shell: update-rc.d cloud-sql-proxy defaults
