@@ -1,0 +1,15 @@
+---
+- name: update the file contents
+  hosts: ansible-host1
+  tasks:
+  - name: replace all instances in the file
+    replace:
+      path: /root/testfile1
+      regexp: 'test'
+      replace: "REPLACED_BY_ANSIBLE"
+  - name: update one line in the file
+    lineinfile:
+      dest: /root/testfile1
+      regexp: '^ansible*'
+      line: 'Replaced by lineinfile module'
+...

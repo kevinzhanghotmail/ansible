@@ -1,0 +1,15 @@
+---
+- name: test variables
+  hosts: ansible-host1
+  vars:
+    day: Tuesday
+  vars_files: 
+    - /root/ansible/test1/vars/var.file
+  tasks:
+  - debug: 
+      msg: 
+        - " hostname is {{ inventory_hostname }} "
+        - " Ansible Distribution is {{ ansible_distribution }} "
+        - " Ansible Dist version is {{ ansible_distribution_version }} "
+        - " Today is {{ day }} "
+        - " Tomorrow is {{ tomorrow }} "
