@@ -1,0 +1,12 @@
+---
+- name: copy startup scripts and configure auto start
+  hosts: all
+  become: yes
+  tasks:
+  - name: copy file
+    copy:
+      src: /etc/hive/conf/hive-site.xml
+      dest: /etc/hive/conf/hive-site.xml
+      owner: root
+      group: root
+      mode: '0644'
