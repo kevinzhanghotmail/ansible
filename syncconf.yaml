@@ -8,12 +8,19 @@
       src: /etc/hive/conf/hive-site.xml
       dest: /etc/hive/conf/hive-site.xml
       owner: root
-      group: root
+      group: hadoop
       mode: '0644'
   - name: copy hdfs-site.xml
     copy:
       src: /etc/hadoop/conf/hdfs-site.xml
       dest: /etc/hadoop/conf/hdfs-site.xml
       owner: root
-      group: root
+      group: hadoop
+      mode: '0644'
+  - name: copy core-site.xml
+    copy:
+      src: /etc/hadoop/conf/core-site.xml
+      dest: /etc/hadoop/conf/core-site.xml
+      owner: root
+      group: hadoop
       mode: '0644'
