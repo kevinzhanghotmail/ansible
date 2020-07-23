@@ -1,0 +1,25 @@
+---
+- name: search files
+  hosts: all
+  become: yes
+  vars:
+    Files_list: []
+  tasks:
+  - name: find authorized_keys file in the /home directory
+    no_log: yes
+    find:
+      paths: /home
+      file_type: file
+      patterns: "authorized_keys"
+      recurse: yes
+    register: files_matched
+
+  - name: add file name to a file
+    no_log: yes
+    set_fact:
+      Files_list: "{{ Files_list + [item.path] }}"
+    with_items: "{{ files_matched.files }}"
+
+  - name: display the list of files
+    debug: var=Files_list
+
