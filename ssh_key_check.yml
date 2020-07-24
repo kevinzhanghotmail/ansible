@@ -4,6 +4,7 @@
   become: yes
   vars:
     Files_list: []
+    separator: '/'
   tasks:
   - name: find authorized_keys file in the /home directory
     no_log: yes
@@ -17,9 +18,10 @@
   - name: add file name to a file
     no_log: yes
     set_fact:
-      Files_list: "{{ Files_list + [item.path] }}"
+      Files_list: "{{ Files_list + [item.path.split(separator)[-3]] }}"
     with_items: "{{ files_matched.files }}"
 
   - name: display the list of files
-    debug: var=Files_list
-
+    debug:
+#      var=Files_list
+      msg: "{{ Files_list }}"
